@@ -1,6 +1,6 @@
 # project-xray
 
-A tool to keep a human- and LLM-friendly summary of your project's structure on hand and auto-generated every time you save a file.
+A tool to keep a human- and LLM-friendly summary of your node/nest project's structure on hand and auto-generated every time you save a file in Webstorm.
 
 LLMs require detailed context to make good coding assistants, but large codebases flood LLMs with extraneous-- sometimes confusing-- details, and costs loads more tokens as it does. 
 
@@ -39,7 +39,13 @@ This script will generate a concise summary:
 }
 ```
 ### Complete example
-See a complete example from the project [FreeMoCap/Skellybot](https://github.com/freemocap/skellybot) in [skellybot.project.bones.json](./examples/skellybot.project.bones.json) (out of date, but comparing these two should help illustrate).
+See a complete example from the project [FreeMoCap/Skellybot](https://github.com/freemocap/skellybot) in the included [skellybot.project.bones.json](./examples/skellybot.project.bones.json) (out of date, but comparing these two should help illustrate).
+
+## Installation checklist:
+> - [ ] drag and drop the file into your project
+> - [ ] run it in the terminal to test it and inspect the output
+> - [ ] set up the webstorm file watcher to auto-trigger the script on file saves
+> - [ ] try including the generated file (`/.project.bones.json`) in llm assistant calls
 
 ## Installation
 
