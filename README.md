@@ -23,23 +23,65 @@ Consider your average codebase:
   ... (hundreds more files and folders)
 ```
 
-This script will generate a concise summary:
+This script will generate a concise summary (these are sketches):
 
+`.project.bones.json`
 ```json
 {
-  "project": { "name": "my-app", "version": "1.0.0" },
-  "structure": {
-    "mainDirectories": "src/\n  modules/\n  services/\n",
-    "entryPoints": [{ "type": "main", "path": "src/main.ts" }]
-  },
-  "architecture": {
-    "modules": [{"name": "app.module.ts", "path": "src/modules/app.module.ts"}],
-    "services": [{"name": "user.service.ts", "path": "src/services/user.service.ts"}]
-  }
+   "project": {"name": "my-app", "version": "1.0.0"},
+   "repository": {"branch": "main"},
+   "stats": {
+      "totalFiles": 42,
+      "totalLines": 3500,
+      "linesPerFileType": {".ts": 2800, ".js": 500}
+   },
+   "projectFileTree": "📁 src/\n  📁 modules/\n  📁 services/\n  📄 main.ts",
+   "entryPoints": {"main": ["src/main.ts"]},
+   "dependencies": ["express", "nestjs", "mongoose"]
 }
 ```
-### Complete example
-See a complete example from the project [FreeMoCap/Skellybot](https://github.com/freemocap/skellybot) in [examples/skellybot.project.bones.json](./examples/skellybot.project.bones.json) and [examples/skellybot.project.bones.md](./examples/skellybot.project.bones.md)
+
+`.project.bones.md`
+
+> # Project Summary: my-app v1.0.0
+> 
+> ## Repository Information
+> - **Branch:** main
+> 
+> ## Project Statistics
+> - **Total Files:** 42
+> - **Total Lines:** 3,500
+> - **Lines by File Type:**
+>    - TypeScript (.ts): 2,800
+>    - JavaScript (.js): 500
+> 
+> ## Project Structure
+> ```
+> 📁 project/
+> │
+> ├── 📁 src/
+> │   ├── 📁 modules/ ...
+> │   ├── 📁 services/ ...
+> │   └── 📄 main.ts
+> │
+> ├── 📁 test/
+> ├── 📄 package.json
+> └── ... (hundreds more files and folders)
+> ```
+> ## Entry Points
+> - **Main:** src/main.ts
+> 
+> ## Dependencies
+> - express
+> - nestjs
+> - mongoose
+
+
+
+## Complete example
+- The [FreeMoCap/Skellybot](https://github.com/freemocap/skellybot) repo
+- [examples/skellybot.project.bones.json](./examples/skellybot.project.bones.json) - the data extracted
+- [examples/skellybot.project.bones.md](./examples/skellybot.project.bones.md) - the more compact and readable report
 
 ## Installation
 
@@ -82,7 +124,7 @@ Set up WebStorm to automatically update the project bones whenever you save file
 
 > ⚠️Note that it can take a bit of time for the files to pop up in webstorm on first running, due to some odd refreshing behavior we don't fully understand yet. Once the files exist, though, they should update fairly quickly in your editor. 
 
-**Tip:** Keep `.project.bones.json` open in your IDE to more easily include it when using AI assistant tools.
+**Tip:** Keep `.project.bones.md` open in your IDE to more easily include it when using AI assistant tools.
 
 ## Optimal Project Structure for Best Results
 
