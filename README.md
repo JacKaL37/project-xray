@@ -1,6 +1,6 @@
 # project-xray
 
-A tool to keep a human- and LLM-friendly summary of your node/nest project's structure on hand and auto-generated every time you save a file in Webstorm.
+A tool to keep a human- and LLM-friendly summary of your project's structure on hand and auto-generated every time you save a file.
 
 LLMs require detailed context to make good coding assistants, but large codebases flood LLMs with extraneous-- sometimes confusing-- details, and costs loads more tokens as it does. 
 
@@ -39,24 +39,21 @@ This script will generate a concise summary:
 }
 ```
 ### Complete example
-See a complete example from the project [FreeMoCap/Skellybot](https://github.com/freemocap/skellybot) in the included [skellybot.project.bones.json](./examples/skellybot.project.bones.json) (out of date, but comparing these two should help illustrate).
-
-## Installation checklist:
-> - [ ] drag and drop the file into your project
-> - [ ] run it in the terminal to test it and inspect the output
-> - [ ] set up the webstorm file watcher to auto-trigger the script on file saves
-> - [ ] try including the generated file (`/.project.bones.json`) in llm assistant calls
+See a complete example from the project [FreeMoCap/Skellybot](https://github.com/freemocap/skellybot) in [examples/skellybot.project.bones.json](./examples/skellybot.project.bones.json) and [examples/skellybot.project.bones.md](./examples/skellybot.project.bones.md)
 
 ## Installation
 
-1. Copy the `project-xray.ts` file into your project (any location works)
+1. Copy the `project-xray.mjs` file into your project (any location works)
 2. Run it from your project root:
 
 ```bash
-node path/to/project-xray.ts
+node path/to/project-xray.mjs
 ```
 
 3. Check the generated `.project.bones.json` in your project root
+
+> You can specify folders to explicitly ignore in the xray process in an `.xray-ignore` file, same shape as a `.gitignore`
+> Place that file either in your project root or in the same directory as the `project-xray.mjs` file.
 
 ## WebStorm Auto-Update Setup
 
@@ -71,16 +68,19 @@ Set up WebStorm to automatically update the project bones whenever you save file
 ![File Watcher Configuration](./docs/img_1.png)
 
 3. Configure the watcher:
-    - Name: "Project X-Ray"
-    - File type: All Files
+    - Name: "Project X-Ray" (or whatever label)
+    - File type: Any
     - Program: `node`
-    - Arguments: `$ProjectFileDir$/path/to/your/project-xray.ts`
+    - Arguments: `$ProjectFileDir$/path/to/your/project-xray.mjs`
+    - Ourput paths: `$ProjectFileDir$/.project.bones.json, $ProjectFileDir$/.project.bones.md`
     - Working directory: `$ProjectFileDir$`
 
 ![File Watcher List](./docs/img_2.png)
 
 
 4. Click OK to save
+
+> ⚠️Note that it can take a bit of time for the files to pop up in webstorm on first running, due to some odd refreshing behavior we don't fully understand yet. Once the files exist, though, they should update fairly quickly in your editor. 
 
 **Tip:** Keep `.project.bones.json` open in your IDE to more easily include it when using AI assistant tools.
 
