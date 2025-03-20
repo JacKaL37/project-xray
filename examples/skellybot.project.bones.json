@@ -1,0 +1,652 @@
+{
+  "project": {
+    "name": "skellybot",
+    "version": "0.0.1",
+    "description": "No description available"
+  },
+  "repository": {
+    "branch": "ai_project_utility",
+    "remotes": [
+      "origin",
+      "upstream"
+    ],
+    "lastCommit": "6906572 - Merge pull request #40 from JacKaL37/chat_command_llm_option (jonmatthis, 9 days ago)",
+    "lastCommits": [
+      "6906572 - Merge pull request #40 from JacKaL37/chat_command_llm_option (9 days ago)",
+      "099a83c - Merge branch 'main' into chat_command_llm_option (9 days ago)",
+      "7b86d1b - changed 'llm' chat option to 'model' (name, cosmetic) (10 days ago)",
+      "c7c5e6b - landed on using both the think tag and the codeblock for user clarity (10 days ago)",
+      "e93c637 - landed on using both the think tag and the codeblock for user clarity (10 days ago)"
+    ],
+    "dependencies": {
+      "@anthropic-ai/sdk": "^0.19.0",
+      "@discordjs/voice": "^0.16.1",
+      "@ffmpeg/core": "^0.12.6",
+      "@ffmpeg/ffmpeg": "^0.12.10",
+      "@google-cloud/secret-manager": "^5.0.1",
+      "@iarna/toml": "^2.2.5",
+      "@nestjs/axios": "^3.0.1",
+      "@nestjs/common": "^10.0.0",
+      "@nestjs/config": "^3.1.1",
+      "@nestjs/core": "^10.0.0",
+      "@nestjs/mapped-types": "*",
+      "@nestjs/mongoose": "^10.0.2",
+      "@nestjs/platform-express": "^10.0.0",
+      "@nestjs/schedule": "^4.1.2",
+      "@nestjs/swagger": "^7.1.17",
+      "axios": "^1.6.5",
+      "bson": "^6.2.0",
+      "bufferutil": "^4.0.8",
+      "class-transformer": "^0.5.1",
+      "class-validator": "^0.14.1",
+      "discord.js": "^14.14.1",
+      "dotenv": "^16.4.5",
+      "form-data": "^4.0.0",
+      "fs-extra": "^11.2.0",
+      "js-yaml": "^4.1.0",
+      "mongodb": "^5.9.2",
+      "mongoose": "^8.0.3",
+      "necord": "^6.4.2",
+      "openai": "^4.24.7",
+      "reflect-metadata": "^0.1.13",
+      "resource": "^0.8.1",
+      "rxjs": "^7.8.1",
+      "toml": "^3.0.0",
+      "uuid": "^9.0.1",
+      "yaml": "^2.4.1",
+      "yml": "^1.0.0"
+    },
+    "devDependencies": {
+      "@golevelup/nestjs-discovery": "^4.0.0",
+      "@nestjs/cli": "^10.0.0",
+      "@nestjs/schematics": "^10.0.0",
+      "@nestjs/testing": "^10.0.0",
+      "@types/express": "^4.17.17",
+      "@types/jest": "^29.5.2",
+      "@types/node": "^20.11.5",
+      "@types/supertest": "^2.0.12",
+      "@typescript-eslint/eslint-plugin": "^6.0.0",
+      "@typescript-eslint/parser": "^6.0.0",
+      "eslint": "^8.42.0",
+      "eslint-config-prettier": "^9.0.0",
+      "eslint-plugin-prettier": "^5.0.0",
+      "jest": "^29.5.0",
+      "prettier": "^3.0.0",
+      "source-map-support": "^0.5.21",
+      "supertest": "^6.3.3",
+      "ts-jest": "^29.1.0",
+      "ts-loader": "^9.4.3",
+      "ts-node": "^10.9.1",
+      "tsconfig-paths": "^4.2.0",
+      "typescript": "^5.3.3"
+    },
+    "configuration": {
+      "environmentVariables": [
+        "ANTHROPIC_API_KEY",
+        "DEEPSEEK_API_KEY",
+        "DEV_GUILD_IDS",
+        "DISCORD_BOT_TOKEN",
+        "DISCORD_DEV_BOT_TOKEN",
+        "MARKDOWN_DIRECTORY",
+        "MONGODB_URI",
+        "NODE_ENV",
+        "OPENAI_API_KEY",
+        "OUTPUT_DIRECTORY",
+        "SLACK_APP_TOKEN",
+        "SLACK_BOT_TOKEN",
+        "SLACK_CLIENT_SECRET",
+        "SLACK_SIGNING_SECRET",
+        "SLACK_SOCKET_MODE",
+        "STUDENT_IDENTIFIERS_CSV_PATH",
+        "STUDENT_IDENTIFIERS_JSON",
+        "TARGET_SERVER_ID"
+      ]
+    }
+  },
+  "meta": {
+    "schemaVersion": "1.1.0",
+    "generatedAt": "2025-03-20T17:08:24.948Z",
+    "generationTimeMs": 66,
+    "overviewSizeChars": 21651,
+    "approximateTokenUsage": 5412.75
+  },
+  "files": [
+    ".dockerignore",
+    ".env.analysis.example",
+    ".env.discord.example",
+    ".env.mongo",
+    ".env.openai.example",
+    ".env.slack.example",
+    ".eslintrc.js",
+    ".gitignore",
+    ".prettierrc",
+    "Dockerfile",
+    "Dockerfile.exp",
+    "LICENSE",
+    "README.md",
+    "bin/builds/install_packages",
+    "docker-compose.yml",
+    "experiments/analysis/ai-stuff/ai-analysis-main.ts",
+    "experiments/analysis/server-scraper/serverScraper-main.ts",
+    "experiments/analysis/server-scraper/services/botService.ts",
+    "experiments/analysis/server-scraper/services/data-types.ts",
+    "experiments/analysis/server-scraper/services/envService.ts",
+    "experiments/analysis/server-scraper/services/json-to-md-directory.ts",
+    "experiments/analysis/server-scraper/services/jsonFileService.ts",
+    "experiments/analysis/server-scraper/services/scrapeService.ts",
+    "experiments/utils/project-xray/.xray-ignore",
+    "experiments/utils/project-xray/.xray-ignore.example",
+    "experiments/utils/project-xray/README.md",
+    "experiments/utils/project-xray/docs/img.png",
+    "experiments/utils/project-xray/docs/img_1.png",
+    "experiments/utils/project-xray/docs/img_2.png",
+    "experiments/utils/project-xray/examples/skellybot.project.bones.json",
+    "experiments/utils/project-xray/old/project-xray-alt.ts",
+    "experiments/utils/project-xray/old/project-xray1.ts",
+    "experiments/utils/project-xray/old/project-xray2.ts",
+    "experiments/utils/project-xray/old/project-xray3.ts",
+    "experiments/utils/project-xray/project-xray.mjs",
+    "gcloud/GCE.txt",
+    "nest-cli.json",
+    "package-lock.json",
+    "package.json",
+    "pyproject.toml",
+    "src/core/ai/openai/dto/image-generation.dto.ts",
+    "src/core/ai/openai/dto/speech-to-text.dto.ts",
+    "src/core/ai/openai/dto/text-generation.dto.ts",
+    "src/core/ai/openai/dto/text-to-speech.dto.ts",
+    "src/core/ai/openai/openai-audio.service.ts",
+    "src/core/ai/openai/openai-chat.service.ts",
+    "src/core/ai/openai/openai-config.factory.ts",
+    "src/core/ai/openai/openai-image.service.ts",
+    "src/core/ai/openai/openai-secrets.service.ts",
+    "src/core/ai/openai/openai-text.service.ts",
+    "src/core/ai/openai/openai.module.ts",
+    "src/core/cron-jobs/cron-jobs.module.ts",
+    "src/core/cron-jobs/cron-jobs.service.ts",
+    "src/core/database/collections/ai-chats/ai-chat-create.dto.ts",
+    "src/core/database/collections/ai-chats/ai-chat.schema.ts",
+    "src/core/database/collections/ai-chats/ai-chats.module.ts",
+    "src/core/database/collections/ai-chats/ai-chats.service.ts",
+    "src/core/database/collections/ai-chats/context-route.provider.ts",
+    "src/core/database/collections/couplets/couplet.dto.ts",
+    "src/core/database/collections/couplets/couplet.schema.ts",
+    "src/core/database/collections/couplets/couplets.module.ts",
+    "src/core/database/collections/couplets/couplets.service.ts",
+    "src/core/database/collections/messages/message.dto.ts",
+    "src/core/database/collections/messages/message.schema.ts",
+    "src/core/database/collections/messages/messages.module.ts",
+    "src/core/database/collections/messages/messages.service.ts",
+    "src/core/database/collections/users/user-identifiers.ts",
+    "src/core/database/collections/users/user.dto.ts",
+    "src/core/database/collections/users/user.schema.ts",
+    "src/core/database/collections/users/users.module.ts",
+    "src/core/database/collections/users/users.service.ts",
+    "src/core/database/database-config.service.ts",
+    "src/core/database/database-connection.service.ts",
+    "src/core/database/database.module.ts",
+    "src/core/gcp/gcp-secrets.service.ts",
+    "src/core/gcp/gcp.module.ts",
+    "src/interfaces/discord/commands/discord-chat.command.ts",
+    "src/interfaces/discord/commands/discord-image.command.ts",
+    "src/interfaces/discord/commands/discord-ping-wow.command.ts",
+    "src/interfaces/discord/commands/image-prompt.dto.ts",
+    "src/interfaces/discord/commands/server-config-command/discord-configure-category.service.ts",
+    "src/interfaces/discord/commands/server-config-command/discord-configure-channel.service.ts",
+    "src/interfaces/discord/commands/server-config-command/discord-deploy-server-command.service.ts",
+    "src/interfaces/discord/commands/server-config-command/discord-server-configuration.service.ts",
+    "src/interfaces/discord/commands/server-config-command/server-config-examples/capstone/HMN24-course-server-config.yaml",
+    "src/interfaces/discord/commands/server-config-command/server-config-examples/capstone/capstone-server-config.yaml",
+    "src/interfaces/discord/commands/server-config-command/server-config-examples/capstone/category-per-student-config.yaml",
+    "src/interfaces/discord/commands/server-config-command/server-config-examples/capstone/generate-student-categories-config.ts",
+    "src/interfaces/discord/commands/server-config-command/server-config-examples/server-config-example.yaml",
+    "src/interfaces/discord/commands/server-config-command/server-config-schema.ts",
+    "src/interfaces/discord/discord.module.ts",
+    "src/interfaces/discord/services/discord-attachment.service.ts",
+    "src/interfaces/discord/services/discord-config.service.ts",
+    "src/interfaces/discord/services/discord-context-prompt.service.ts",
+    "src/interfaces/discord/services/discord-context-route.service.ts",
+    "src/interfaces/discord/services/discord-message.service.ts",
+    "src/interfaces/discord/services/discord-on-message.service.ts",
+    "src/interfaces/discord/services/discord-persistence.service.ts",
+    "src/interfaces/discord/services/discord-start-up.service.ts",
+    "src/interfaces/discord/services/discord-thread.service.ts",
+    "src/main/main.controller.spec.ts",
+    "src/main/main.controller.ts",
+    "src/main/main.module.ts",
+    "src/main/setup-swagger-ui.ts",
+    "src/main.ts",
+    "test/app.e2e-spec.ts",
+    "test/jest-e2e.json",
+    "tiktokrq8eUh2qfZ79nxssd0dbpCYSqauemI80.txt",
+    "tsconfig.build.json",
+    "tsconfig.json",
+    "uv.lock"
+  ],
+  "fileTree": "├── .dockerignore\n├── .env.analysis.example\n├── .env.discord.example\n├── .env.mongo\n├── .env.openai.example\n├── .env.slack.example\n├── .eslintrc.js\n├── .gitignore\n├── .prettierrc\n├── Dockerfile\n├── Dockerfile.exp\n├── LICENSE\n├── README.md\n├── bin\n│   └── builds\n│       └── install_packages\n├── docker-compose.yml\n├── experiments\n│   ├── analysis\n│   │   ├── ai-stuff\n│   │   │   └── ai-analysis-main.ts\n│   │   └── server-scraper\n│   │       ├── serverScraper-main.ts\n│   │       └── services\n│   │           ├── botService.ts\n│   │           ├── data-types.ts\n│   │           ├── envService.ts\n│   │           ├── json-to-md-directory.ts\n│   │           ├── jsonFileService.ts\n│   │           └── scrapeService.ts\n│   └── utils\n│       └── project-xray\n│           ├── .xray-ignore\n│           ├── .xray-ignore.example\n│           ├── README.md\n│           ├── docs\n│           │   ├── img.png\n│           │   ├── img_1.png\n│           │   └── img_2.png\n│           ├── examples\n│           │   └── skellybot.project.bones.json\n│           ├── old\n│           │   ├── project-xray-alt.ts\n│           │   ├── project-xray1.ts\n│           │   ├── project-xray2.ts\n│           │   └── project-xray3.ts\n│           └── project-xray.mjs\n├── gcloud\n│   └── GCE.txt\n├── nest-cli.json\n├── package-lock.json\n├── package.json\n├── pyproject.toml\n├── src\n│   ├── core\n│   │   ├── ai\n│   │   │   └── openai\n│   │   │       ├── dto\n│   │   │       │   ├── image-generation.dto.ts\n│   │   │       │   ├── speech-to-text.dto.ts\n│   │   │       │   ├── text-generation.dto.ts\n│   │   │       │   └── text-to-speech.dto.ts\n│   │   │       ├── openai-audio.service.ts\n│   │   │       ├── openai-chat.service.ts\n│   │   │       ├── openai-config.factory.ts\n│   │   │       ├── openai-image.service.ts\n│   │   │       ├── openai-secrets.service.ts\n│   │   │       ├── openai-text.service.ts\n│   │   │       └── openai.module.ts\n│   │   ├── cron-jobs\n│   │   │   ├── cron-jobs.module.ts\n│   │   │   └── cron-jobs.service.ts\n│   │   ├── database\n│   │   │   ├── collections\n│   │   │   │   ├── ai-chats\n│   │   │   │   │   ├── ai-chat-create.dto.ts\n│   │   │   │   │   ├── ai-chat.schema.ts\n│   │   │   │   │   ├── ai-chats.module.ts\n│   │   │   │   │   ├── ai-chats.service.ts\n│   │   │   │   │   └── context-route.provider.ts\n│   │   │   │   ├── couplets\n│   │   │   │   │   ├── couplet.dto.ts\n│   │   │   │   │   ├── couplet.schema.ts\n│   │   │   │   │   ├── couplets.module.ts\n│   │   │   │   │   └── couplets.service.ts\n│   │   │   │   ├── messages\n│   │   │   │   │   ├── message.dto.ts\n│   │   │   │   │   ├── message.schema.ts\n│   │   │   │   │   ├── messages.module.ts\n│   │   │   │   │   └── messages.service.ts\n│   │   │   │   └── users\n│   │   │   │       ├── user-identifiers.ts\n│   │   │   │       ├── user.dto.ts\n│   │   │   │       ├── user.schema.ts\n│   │   │   │       ├── users.module.ts\n│   │   │   │       └── users.service.ts\n│   │   │   ├── database-config.service.ts\n│   │   │   ├── database-connection.service.ts\n│   │   │   └── database.module.ts\n│   │   └── gcp\n│   │       ├── gcp-secrets.service.ts\n│   │       └── gcp.module.ts\n│   ├── interfaces\n│   │   └── discord\n│   │       ├── commands\n│   │       │   ├── discord-chat.command.ts\n│   │       │   ├── discord-image.command.ts\n│   │       │   ├── discord-ping-wow.command.ts\n│   │       │   ├── image-prompt.dto.ts\n│   │       │   └── server-config-command\n│   │       │       ├── discord-configure-category.service.ts\n│   │       │       ├── discord-configure-channel.service.ts\n│   │       │       ├── discord-deploy-server-command.service.ts\n│   │       │       ├── discord-server-configuration.service.ts\n│   │       │       ├── server-config-examples\n│   │       │       │   ├── capstone\n│   │       │       │   │   ├── HMN24-course-server-config.yaml\n│   │       │       │   │   ├── capstone-server-config.yaml\n│   │       │       │   │   ├── category-per-student-config.yaml\n│   │       │       │   │   └── generate-student-categories-config.ts\n│   │       │       │   └── server-config-example.yaml\n│   │       │       └── server-config-schema.ts\n│   │       ├── discord.module.ts\n│   │       └── services\n│   │           ├── discord-attachment.service.ts\n│   │           ├── discord-config.service.ts\n│   │           ├── discord-context-prompt.service.ts\n│   │           ├── discord-context-route.service.ts\n│   │           ├── discord-message.service.ts\n│   │           ├── discord-on-message.service.ts\n│   │           ├── discord-persistence.service.ts\n│   │           ├── discord-start-up.service.ts\n│   │           └── discord-thread.service.ts\n│   ├── main\n│   │   ├── main.controller.spec.ts\n│   │   ├── main.controller.ts\n│   │   ├── main.module.ts\n│   │   └── setup-swagger-ui.ts\n│   └── main.ts\n├── test\n│   ├── app.e2e-spec.ts\n│   └── jest-e2e.json\n├── tiktokrq8eUh2qfZ79nxssd0dbpCYSqauemI80.txt\n├── tsconfig.build.json\n├── tsconfig.json\n└── uv.lock\n",
+  "entryPoints": {
+    "controllers": [
+      "experiments/utils/project-xray/old/project-xray-alt.ts",
+      "experiments/utils/project-xray/old/project-xray1.ts",
+      "experiments/utils/project-xray/old/project-xray2.ts",
+      "experiments/utils/project-xray/old/project-xray3.ts",
+      "src/main/main.controller.spec.ts",
+      "src/main/main.controller.ts",
+      "src/main/main.module.ts",
+      "test/app.e2e-spec.ts"
+    ],
+    "commands": [
+      "experiments/utils/project-xray/old/project-xray-alt.ts",
+      "experiments/utils/project-xray/old/project-xray1.ts",
+      "experiments/utils/project-xray/old/project-xray2.ts",
+      "experiments/utils/project-xray/old/project-xray3.ts",
+      "src/interfaces/discord/commands/discord-chat.command.ts",
+      "src/interfaces/discord/commands/discord-image.command.ts",
+      "src/interfaces/discord/commands/discord-ping-wow.command.ts",
+      "src/interfaces/discord/commands/server-config-command/discord-deploy-server-command.service.ts",
+      "src/interfaces/discord/discord.module.ts",
+      "src/interfaces/discord/services/discord-start-up.service.ts"
+    ],
+    "eventHandlers": [
+      "experiments/analysis/server-scraper/services/botService.ts",
+      "experiments/utils/project-xray/old/project-xray-alt.ts",
+      "experiments/utils/project-xray/old/project-xray1.ts",
+      "experiments/utils/project-xray/old/project-xray2.ts",
+      "experiments/utils/project-xray/old/project-xray3.ts",
+      "src/interfaces/discord/services/discord-start-up.service.ts"
+    ],
+    "apis": [
+      "src/main/main.controller.ts"
+    ]
+  },
+  "exitPoints": {
+    "apiCalls": [
+      "experiments/analysis/server-scraper/services/scrapeService.ts",
+      "experiments/utils/project-xray/old/project-xray-alt.ts",
+      "experiments/utils/project-xray/old/project-xray1.ts",
+      "experiments/utils/project-xray/old/project-xray2.ts",
+      "experiments/utils/project-xray/old/project-xray3.ts",
+      "src/interfaces/discord/commands/discord-image.command.ts",
+      "src/interfaces/discord/commands/server-config-command/discord-configure-category.service.ts",
+      "src/interfaces/discord/commands/server-config-command/discord-configure-channel.service.ts",
+      "src/interfaces/discord/commands/server-config-command/discord-deploy-server-command.service.ts",
+      "src/interfaces/discord/commands/server-config-command/discord-server-configuration.service.ts",
+      "src/interfaces/discord/services/discord-context-prompt.service.ts",
+      "src/interfaces/discord/services/discord-persistence.service.ts",
+      "src/interfaces/discord/services/discord-start-up.service.ts"
+    ],
+    "databaseOperations": [
+      "experiments/utils/project-xray/old/project-xray-alt.ts",
+      "experiments/utils/project-xray/old/project-xray1.ts",
+      "experiments/utils/project-xray/old/project-xray2.ts",
+      "experiments/utils/project-xray/old/project-xray3.ts",
+      "src/core/database/collections/ai-chats/ai-chat.schema.ts",
+      "src/core/database/collections/ai-chats/ai-chats.module.ts",
+      "src/core/database/collections/ai-chats/ai-chats.service.ts",
+      "src/core/database/collections/couplets/couplet.dto.ts",
+      "src/core/database/collections/couplets/couplet.schema.ts",
+      "src/core/database/collections/couplets/couplets.module.ts",
+      "src/core/database/collections/couplets/couplets.service.ts",
+      "src/core/database/collections/messages/message.schema.ts",
+      "src/core/database/collections/messages/messages.module.ts",
+      "src/core/database/collections/messages/messages.service.ts",
+      "src/core/database/collections/users/user.schema.ts",
+      "src/core/database/collections/users/users.module.ts",
+      "src/core/database/collections/users/users.service.ts",
+      "src/core/database/database-config.service.ts",
+      "src/core/database/database-connection.service.ts",
+      "src/core/database/database.module.ts",
+      "src/interfaces/discord/services/discord-persistence.service.ts"
+    ],
+    "externalServices": [],
+    "fileOperations": [
+      "experiments/analysis/ai-stuff/ai-analysis-main.ts",
+      "experiments/analysis/server-scraper/services/json-to-md-directory.ts",
+      "experiments/analysis/server-scraper/services/jsonFileService.ts",
+      "experiments/utils/project-xray/old/project-xray-alt.ts",
+      "experiments/utils/project-xray/old/project-xray1.ts",
+      "experiments/utils/project-xray/old/project-xray2.ts",
+      "experiments/utils/project-xray/old/project-xray3.ts",
+      "src/core/ai/openai/openai-audio.service.ts",
+      "src/interfaces/discord/commands/server-config-command/server-config-examples/capstone/generate-student-categories-config.ts",
+      "src/interfaces/discord/services/discord-attachment.service.ts"
+    ]
+  },
+  "types": {
+    "interfaces": [
+      "AnthropicRequest (experiments/analysis/ai-stuff/ai-analysis-main.ts)",
+      "EnvironmentVariables (experiments/analysis/server-scraper/services/envService.ts)",
+      "FileInfo (experiments/utils/project-xray/old/project-xray2.ts)",
+      "CodeMetrics (experiments/utils/project-xray/old/project-xray2.ts)",
+      "Config (experiments/utils/project-xray/old/project-xray2.ts)",
+      "ProjectInfo (experiments/utils/project-xray/old/project-xray3.ts)",
+      "CodeStats (experiments/utils/project-xray/old/project-xray3.ts)",
+      "ProjectStructure (experiments/utils/project-xray/old/project-xray3.ts)",
+      "ComponentRelationship (experiments/utils/project-xray/old/project-xray3.ts)",
+      "Architecture (experiments/utils/project-xray/old/project-xray3.ts)",
+      "TypeDefinition (experiments/utils/project-xray/old/project-xray3.ts)",
+      "Metadata (experiments/utils/project-xray/old/project-xray3.ts)",
+      "ProjectBones (experiments/utils/project-xray/old/project-xray3.ts)",
+      "if (experiments/utils/project-xray/old/project-xray3.ts)",
+      "OpenAiChatConfig (src/core/ai/openai/openai-chat.service.ts)",
+      "ModelConfig (src/core/ai/openai/openai-config.factory.ts)",
+      "StudentInfo (src/interfaces/discord/commands/server-config-command/server-config-examples/capstone/generate-student-categories-config.ts)",
+      "CombinedConfig (src/interfaces/discord/commands/server-config-command/server-config-examples/capstone/generate-student-categories-config.ts)"
+    ],
+    "typeDefinitions": [
+      "Attachment (experiments/analysis/server-scraper/services/data-types.ts)",
+      "Message (experiments/analysis/server-scraper/services/data-types.ts)",
+      "Thread (experiments/analysis/server-scraper/services/data-types.ts)",
+      "AttachmentRecord (experiments/analysis/server-scraper/services/data-types.ts)",
+      "MessageRecord (experiments/analysis/server-scraper/services/data-types.ts)",
+      "Couplet (experiments/analysis/server-scraper/services/data-types.ts)",
+      "ChannelData (experiments/analysis/server-scraper/services/data-types.ts)",
+      "Channel (experiments/analysis/server-scraper/services/data-types.ts)",
+      "Category (experiments/analysis/server-scraper/services/data-types.ts)",
+      "Server (experiments/analysis/server-scraper/services/data-types.ts)",
+      "d (experiments/utils/project-xray/old/project-xray2.ts)",
+      "filesByType (experiments/utils/project-xray/old/project-xray3.ts)",
+      "const (experiments/utils/project-xray/old/project-xray3.ts)",
+      "OpenAIModelType (src/core/ai/openai/openai-config.factory.ts)",
+      "ModelFamily (src/core/ai/openai/openai-config.factory.ts)",
+      "AiChatDocument (src/core/database/collections/ai-chats/ai-chat.schema.ts)",
+      "CoupletDocument (src/core/database/collections/couplets/couplet.schema.ts)",
+      "MessageDocument (src/core/database/collections/messages/message.schema.ts)",
+      "UserDocument (src/core/database/collections/users/user.schema.ts)",
+      "and (src/interfaces/discord/commands/server-config-command/discord-deploy-server-command.service.ts)",
+      "of (src/interfaces/discord/services/discord-attachment.service.ts)",
+      "and (src/interfaces/discord/services/discord-attachment.service.ts)"
+    ],
+    "dtos": [
+      "ImageGenerationDto (src/core/ai/openai/dto/image-generation.dto.ts)",
+      "SpeechToTextDto (src/core/ai/openai/dto/speech-to-text.dto.ts)",
+      "TextGenerationDto (src/core/ai/openai/dto/text-generation.dto.ts)",
+      "TextToSpeechDto (src/core/ai/openai/dto/text-to-speech.dto.ts)",
+      "AiChatCreateDto (src/core/database/collections/ai-chats/ai-chat-create.dto.ts)",
+      "UpdateAiChatDto (src/core/database/collections/ai-chats/ai-chat-create.dto.ts)",
+      "GetAiChatDto (src/core/database/collections/ai-chats/ai-chat-create.dto.ts)",
+      "ListAiChatsDto (src/core/database/collections/ai-chats/ai-chat-create.dto.ts)",
+      "CreateCoupletDto (src/core/database/collections/couplets/couplet.dto.ts)",
+      "CreateMessageDto (src/core/database/collections/messages/message.dto.ts)",
+      "DiscordIdentifierDto (src/core/database/collections/users/user.dto.ts)",
+      "SlackIdentifierDto (src/core/database/collections/users/user.dto.ts)",
+      "UserDto (src/core/database/collections/users/user.dto.ts)",
+      "InitialChatDto (src/interfaces/discord/commands/discord-chat.command.ts)",
+      "ImagePromptDto (src/interfaces/discord/commands/image-prompt.dto.ts)"
+    ]
+  },
+  "stats": {
+    "totalLines": 9671,
+    "linesPerFileType": {
+      ".js": 27,
+      ".ts": 9644
+    },
+    "largestFiles": [
+      {
+        "path": "experiments/utils/project-xray/old/project-xray1.ts",
+        "lines": 1422
+      },
+      {
+        "path": "experiments/utils/project-xray/old/project-xray-alt.ts",
+        "lines": 966
+      },
+      {
+        "path": "experiments/utils/project-xray/old/project-xray3.ts",
+        "lines": 912
+      },
+      {
+        "path": "experiments/utils/project-xray/old/project-xray2.ts",
+        "lines": 858
+      },
+      {
+        "path": "src/interfaces/discord/services/discord-message.service.ts",
+        "lines": 313
+      },
+      {
+        "path": "src/core/ai/openai/openai-chat.service.ts",
+        "lines": 286
+      },
+      {
+        "path": "src/interfaces/discord/commands/server-config-command/discord-deploy-server-command.service.ts",
+        "lines": 249
+      },
+      {
+        "path": "experiments/analysis/server-scraper/services/scrapeService.ts",
+        "lines": 236
+      },
+      {
+        "path": "src/interfaces/discord/services/discord-context-prompt.service.ts",
+        "lines": 227
+      },
+      {
+        "path": "src/interfaces/discord/commands/server-config-command/server-config-schema.ts",
+        "lines": 223
+      },
+      {
+        "path": "src/interfaces/discord/services/discord-attachment.service.ts",
+        "lines": 221
+      },
+      {
+        "path": "src/core/ai/openai/openai-config.factory.ts",
+        "lines": 191
+      },
+      {
+        "path": "src/interfaces/discord/commands/server-config-command/discord-configure-category.service.ts",
+        "lines": 189
+      },
+      {
+        "path": "experiments/analysis/server-scraper/services/json-to-md-directory.ts",
+        "lines": 188
+      },
+      {
+        "path": "experiments/analysis/ai-stuff/ai-analysis-main.ts",
+        "lines": 179
+      },
+      {
+        "path": "src/interfaces/discord/commands/server-config-command/discord-server-configuration.service.ts",
+        "lines": 175
+      },
+      {
+        "path": "src/interfaces/discord/services/discord-persistence.service.ts",
+        "lines": 171
+      },
+      {
+        "path": "src/interfaces/discord/commands/discord-chat.command.ts",
+        "lines": 167
+      },
+      {
+        "path": "src/interfaces/discord/services/discord-on-message.service.ts",
+        "lines": 147
+      },
+      {
+        "path": "src/interfaces/discord/commands/discord-image.command.ts",
+        "lines": 137
+      }
+    ]
+  },
+  "moduleImports": {
+    "openai": [
+      "Gcp"
+    ],
+    "cron-jobs": [],
+    "ai-chats": [
+      "Mongoose"
+    ],
+    "couplets": [
+      "Mongoose"
+    ],
+    "messages": [
+      "Mongoose"
+    ],
+    "users": [
+      "Mongoose"
+    ],
+    "database": [
+      "Gcp",
+      "Mongoose",
+      "Gcp"
+    ],
+    "gcp": [],
+    "discord": [
+      "Gcp",
+      "Necord",
+      "Gcp"
+    ],
+    "main": [
+      "Config"
+    ]
+  },
+  "serviceUsage": {
+    "openai": [
+      {
+        "service": "OpenaiSecretsService",
+        "module": "./openai-secrets.service"
+      },
+      {
+        "service": "OpenaiSecretsService",
+        "module": "./openai-secrets.service"
+      },
+      {
+        "service": "OpenaiSecretsService",
+        "module": "./openai-secrets.service"
+      },
+      {
+        "service": "GcpSecretsService",
+        "module": "../../gcp/gcp-secrets.service"
+      },
+      {
+        "service": "ConfigService",
+        "module": "@nestjs/config"
+      },
+      {
+        "service": "OpenaiSecretsService",
+        "module": "./openai-secrets.service"
+      }
+    ],
+    "cron-jobs": [],
+    "ai-chats": [],
+    "couplets": [],
+    "messages": [],
+    "users": [],
+    "database": [
+      {
+        "service": "GcpSecretsService",
+        "module": "../gcp/gcp-secrets.service"
+      },
+      {
+        "service": "ConfigService",
+        "module": "@nestjs/config"
+      }
+    ],
+    "gcp": [],
+    "server-config-command": [
+      {
+        "service": "DiscordMessageService",
+        "module": "../../services/discord-message.service"
+      },
+      {
+        "service": "DiscordContextPromptService",
+        "module": "../../services/discord-context-prompt.service"
+      },
+      {
+        "service": "DiscordConfigureChannelService",
+        "module": "./discord-configure-channel.service"
+      },
+      {
+        "service": "DiscordServerConfigService",
+        "module": "./discord-server-configuration.service"
+      },
+      {
+        "service": "DiscordConfigureCategoryService",
+        "module": "./discord-configure-category.service"
+      },
+      {
+        "service": "DiscordConfigureChannelService",
+        "module": "./discord-configure-channel.service"
+      },
+      {
+        "service": "DiscordMessageService",
+        "module": "../../services/discord-message.service"
+      }
+    ],
+    "services": [
+      {
+        "service": "OpenaiAudioService",
+        "module": "../../../core/ai/openai/openai-audio.service"
+      },
+      {
+        "service": "GcpSecretsService",
+        "module": "../../../core/gcp/gcp-secrets.service"
+      },
+      {
+        "service": "ConfigService",
+        "module": "@nestjs/config"
+      },
+      {
+        "service": "DiscordMessageService",
+        "module": "./discord-message.service"
+      },
+      {
+        "service": "DiscordPersistenceService",
+        "module": "./discord-persistence.service"
+      },
+      {
+        "service": "DiscordContextRouteService",
+        "module": "./discord-context-route.service"
+      },
+      {
+        "service": "DiscordAttachmentService",
+        "module": "./discord-attachment.service"
+      },
+      {
+        "service": "OpenaiChatService",
+        "module": "../../../core/ai/openai/openai-chat.service"
+      },
+      {
+        "service": "AiChatsService",
+        "module": "../../../core/database/collections/ai-chats/ai-chats.service"
+      },
+      {
+        "service": "DiscordMessageService",
+        "module": "./discord-message.service"
+      },
+      {
+        "service": "DiscordContextRouteService",
+        "module": "./discord-context-route.service"
+      },
+      {
+        "service": "DiscordContextPromptService",
+        "module": "./discord-context-prompt.service"
+      },
+      {
+        "service": "UsersService",
+        "module": "../../../core/database/collections/users/users.service"
+      },
+      {
+        "service": "OpenaiChatService",
+        "module": "../../../core/ai/openai/openai-chat.service"
+      },
+      {
+        "service": "CoupletsService",
+        "module": "../../../core/database/collections/couplets/couplets.service"
+      },
+      {
+        "service": "AiChatsService",
+        "module": "../../../core/database/collections/ai-chats/ai-chats.service"
+      },
+      {
+        "service": "MessagesService",
+        "module": "../../../core/database/collections/messages/messages.service"
+      },
+      {
+        "service": "DiscordAttachmentService",
+        "module": "./discord-attachment.service"
+      },
+      {
+        "service": "DiscordOnMessageService",
+        "module": "./discord-on-message.service"
+      }
+    ]
+  },
+  "mermaidServiceDiagram": "```mermaid\ngraph TD\n  openai[openai]\n  cron-jobs[cron-jobs]\n  ai-chats[ai-chats]\n  couplets[couplets]\n  messages[messages]\n  users[users]\n  database[database]\n  gcp[gcp]\n  server-config-command[server-config-command]\n  services[services]\n  openai --> OpenaiSecretsService\n  openai --> OpenaiSecretsService\n  openai --> OpenaiSecretsService\n  openai --> GcpSecretsService\n  openai --> ConfigService\n  openai --> OpenaiSecretsService\n  database --> GcpSecretsService\n  database --> ConfigService\n  server-config-command --> DiscordMessageService\n  server-config-command --> DiscordContextPromptService\n  server-config-command --> DiscordConfigureChannelService\n  server-config-command --> DiscordServerConfigService\n  server-config-command --> DiscordConfigureCategoryService\n  server-config-command --> DiscordConfigureChannelService\n  server-config-command --> DiscordMessageService\n  services --> OpenaiAudioService\n  services --> GcpSecretsService\n  services --> ConfigService\n  services --> DiscordMessageService\n  services --> DiscordPersistenceService\n  services --> DiscordContextRouteService\n  services --> DiscordAttachmentService\n  services --> OpenaiChatService\n  services --> AiChatsService\n  services --> DiscordMessageService\n  services --> DiscordContextRouteService\n  services --> DiscordContextPromptService\n  services --> UsersService\n  services --> OpenaiChatService\n  services --> CoupletsService\n  services --> AiChatsService\n  services --> MessagesService\n  services --> DiscordAttachmentService\n  services --> DiscordOnMessageService\n```"
+}
