@@ -103,11 +103,11 @@ Set up WebStorm to automatically update the project bones whenever you save file
 
 1. Open Settings/Preferences
 
-![WebStorm Settings Menu](./docs/img.png)
+![WebStorm Settings Menu](img/img.png)
 
 2. Go to Tools → File Watchers Click "+" and select "Custom"
 
-![File Watcher Configuration](./docs/img_1.png)
+![File Watcher Configuration](img/img_1.png)
 
 3. Configure the watcher:
     - Name: "Project X-Ray" (or whatever label)
@@ -117,7 +117,7 @@ Set up WebStorm to automatically update the project bones whenever you save file
     - Ourput paths: `$ProjectFileDir$/.project.bones.json, $ProjectFileDir$/.project.bones.md`
     - Working directory: `$ProjectFileDir$`
 
-![File Watcher List](./docs/img_2.png)
+![File Watcher List](img/img_2.png)
 
 
 4. Click OK to save
